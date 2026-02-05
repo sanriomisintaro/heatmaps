@@ -1,0 +1,195 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "site": "MA1",
+        "depth_m": 39,
+        "mud_pct": 11.52,
+        "sand_pct": 75.06,
+        "gravel_pct": 13.42,
+        "sediment_desc": "Pasir berlumpur berkerikil",
+        "sediment_code": "gmS",
+        "om_pct": 7.05,
+        "lat_dms": "0°54'16,16\"N",
+        "lon_dms": "124°46'17,67\"E"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [124.771575, 0.9044888889]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "site": "MA2",
+        "depth_m": 33,
+        "mud_pct": 11.62,
+        "sand_pct": 65.38,
+        "gravel_pct": 23.00,
+        "sediment_desc": "Pasir berlumpur berkerikil",
+        "sediment_code": "gmS",
+        "om_pct": 8.52,
+        "lat_dms": "0°54'26,99\"N",
+        "lon_dms": "124°46'22,67\"E"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [124.7729638889, 0.9074972222]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "site": "BA1",
+        "depth_m": 43,
+        "mud_pct": 9.93,
+        "sand_pct": 73.94,
+        "gravel_pct": 16.13,
+        "sediment_desc": "Pasir berlumpur berkerikil",
+        "sediment_code": "gmS",
+        "om_pct": 7.95,
+        "lat_dms": "0°53'29,67\"N",
+        "lon_dms": "124°45'29,87\"E"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [124.7582972222, 0.891575]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "site": "BA2",
+        "depth_m": 45,
+        "mud_pct": 9.40,
+        "sand_pct": 73.48,
+        "gravel_pct": 17.12,
+        "sediment_desc": "Pasir berlumpur berkerikil",
+        "sediment_code": "gmS",
+        "om_pct": 7.73,
+        "lat_dms": "0°53'19,13\"N",
+        "lon_dms": "124°45'19,40\"E"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [124.7553888889, 0.8886472222]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "site": "TO1",
+        "depth_m": 24,
+        "mud_pct": 62.10,
+        "sand_pct": 36.13,
+        "gravel_pct": 1.77,
+        "sediment_desc": "Lumpur berpasir sedikit berkerikil",
+        "sediment_code": "(g)sM",
+        "om_pct": 9.78,
+        "lat_dms": "0°52'3,81\"N",
+        "lon_dms": "124°42'52,83\"E"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [124.714675, 0.867725]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "site": "TO2",
+        "depth_m": 11,
+        "mud_pct": 92.50,
+        "sand_pct": 6.77,
+        "gravel_pct": 0.73,
+        "sediment_desc": "Lumpur",
+        "sediment_code": "M",
+        "om_pct": 10.91,
+        "lat_dms": "0°52'9,61\"N",
+        "lon_dms": "124°42'47,66\"E"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [124.7132388889, 0.8693361111]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "site": "TO3",
+        "depth_m": 19,
+        "mud_pct": 86.05,
+        "sand_pct": 12.96,
+        "gravel_pct": 0.99,
+        "sediment_desc": "Lumpur berpasir",
+        "sediment_code": "sM",
+        "om_pct": 8.84,
+        "lat_dms": "0°52'18,28\"N",
+        "lon_dms": "124°42'53,04\"E"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [124.7147333333, 0.8717444444]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "site": "BU1",
+        "depth_m": 25,
+        "mud_pct": 36.91,
+        "sand_pct": 60.13,
+        "gravel_pct": 2.96,
+        "sediment_desc": "Pasir berlumpur sedikit berkerikil",
+        "sediment_code": "(g)mS",
+        "om_pct": 8.15,
+        "lat_dms": "0°50'36,64\"N",
+        "lon_dms": "124°42'3,10\"E"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [124.7008611111, 0.8435111111]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "site": "BU2",
+        "depth_m": 59,
+        "mud_pct": 60.69,
+        "sand_pct": 35.13,
+        "gravel_pct": 4.18,
+        "sediment_desc": "Lumpur berpasir sedikit berkerikil",
+        "sediment_code": "(g)sM",
+        "om_pct": 9.07,
+        "lat_dms": "0°50'31,66\"N",
+        "lon_dms": "124°42'10,67\"E"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [124.7029638889, 0.8421277778]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "site": "BU3",
+        "depth_m": 68,
+        "mud_pct": 51.98,
+        "sand_pct": 47.36,
+        "gravel_pct": 0.66,
+        "sediment_desc": "Lumpur berpasir",
+        "sediment_code": "sM",
+        "om_pct": 9.77,
+        "lat_dms": "0°50'25,44\"N",
+        "lon_dms": "124°42'10,95\"E"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [124.7030416667, 0.8404]
+      }
+    }
+  ]
+}
