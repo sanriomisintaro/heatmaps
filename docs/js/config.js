@@ -14,6 +14,10 @@ const FIELDS = {
 
 const DEFAULT_FIELD = "om_pct";
 
+// Station code options (prefix dari properties.site)
+// "ALL" selalu tersedia untuk menampilkan semua stasiun
+const STATION_CODES = ["MA", "BA", "TO", "BU"];
+
 const APP_CONFIG = {
   map: {
     center: [0.8727053, 124.7307739],

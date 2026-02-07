@@ -94,13 +94,13 @@
   };
 
   APP.renderAll = function () {
-    const features = APP.data.features || [];
+    const features = APP.filterByStation(APP.data.features || []);
     APP.updatePoints(features);
     APP.updateHeat(features, APP.getSelectedField());
   };
 
   APP.refreshHeatOnly = function () {
-    const features = APP.data.features || [];
+    const features = APP.filterByStation(APP.data.features || []);
     APP.updateHeat(features, APP.getSelectedField());
   };
 })();

@@ -18,6 +18,9 @@
     },
     ui: {
       fieldSelect: null,
+      stationSelect: null,
+      panel: null,
+      panelToggle: null,
       radiusSlider: null,
       radiusVal: null,
       togglePoints: null,
@@ -99,5 +102,20 @@
   APP.getRadius = function () {
     const v = Number(APP.ui.radiusSlider?.value);
     return Number.isFinite(v) ? v : APP_CONFIG.heat.radius;
+  };
+
+  // ---------- Station filter helpers ----------
+  APP.getSelectedStation = function () {
+    return (APP.ui.stationSelect?.value || "ALL").toUpperCase();
+  };
+
+  APP.filterByStation = function (features) {
+    const code = APP.getSelectedStation();
+    if (!code || code === "ALL") return features;
+
+    return (features || []).filter((f) => {
+      const site = String(f?.properties?.site || "").toUpperCase();
+      return site.startsWith(code);
+    });
   };
 })();

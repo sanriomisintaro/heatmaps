@@ -11,6 +11,9 @@ window.addEventListener("DOMContentLoaded", () => {
   // 3) load data & render
   APP.loadGeoJSON("./data/samples.geojson")
     .then(() => {
+      // Update station dropdown based on loaded data
+      if (typeof APP.refreshStationOptions === "function") APP.refreshStationOptions();
+
       APP.renderAll();
 
       // Terapkan toggle awal (kalau user uncheck di HTML nanti)

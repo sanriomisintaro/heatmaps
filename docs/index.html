@@ -30,6 +30,11 @@
     <div class="panel-title">Peta Sedimen</div>
 
     <label class="row">
+      <span>Station</span>
+      <select id="stationSelect"></select>
+    </label>
+
+    <label class="row">
       <span>Heatmap</span>
       <select id="fieldSelect"></select>
     </label>
@@ -59,6 +64,9 @@
       Tips: klik titik untuk lihat detail. Data dibaca dari <span class="mono">data/samples.geojson</span>.
     </div>
   </div>
+
+  <!-- tombol untuk buka/tutup panel (biar panel tidak ketutup map) -->
+  <button id="panelToggle" class="panel-toggle" type="button" aria-label="Toggle controls" aria-expanded="true">☰</button>
 
   <!-- urutan penting -->
   <script src="./js/config.js"></script>
