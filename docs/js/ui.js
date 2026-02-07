@@ -25,47 +25,80 @@
     }
     APP.ui.fieldSelect.value = DEFAULT_FIELD;
 
-    // Dropdown station (ALL + kode stasiun)
-    const fillStationOptions = (codes, keepSelection = true) => {
+    // ------- Station dropdown (ALL + Groups + Sites) -------
+    const buildStationSelect = ({ groups = [], sites = [], keepSelection = true } = {}) => {
       const sel = APP.ui.stationSelect;
       if (!sel) return;
 
-      const prev = sel.value || "ALL";
-      const uniq = Array.from(
-        new Set((codes || []).map((x) => String(x).toUpperCase()).filter(Boolean))
-      ).sort();
+      const prev = String(sel.value || "ALL").toUpperCase();
+
+      const uniqGroups = Array.from(new Set(groups.map(x => String(x).toUpperCase()).filter(Boolean))).sort();
+      const uniqSites = Array.from(new Set(sites.map(x => String(x).toUpperCase()).filter(Boolean)))
+        .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
 
       sel.innerHTML = "";
+
+      // All
       const optAll = document.createElement("option");
       optAll.value = "ALL";
       optAll.textContent = "All stations";
       sel.appendChild(optAll);
 
-      for (const code of uniq) {
-        const opt = document.createElement("option");
-        opt.value = code;
-        opt.textContent = code;
-        sel.appendChild(opt);
+      // Groups
+      if (uniqGroups.length) {
+        const og = document.createElement("optgroup");
+        og.label = "Groups";
+        for (const g of uniqGroups) {
+          const opt = document.createElement("option");
+          opt.value = g;                 // MA, BA, TO, BU
+          opt.textContent = `${g} (all)`; // display label
+          og.appendChild(opt);
+        }
+        sel.appendChild(og);
       }
 
-      if (keepSelection && (prev === "ALL" || uniq.includes(prev))) sel.value = prev;
-      else sel.value = "ALL";
+      // Sites
+      if (uniqSites.length) {
+        const og2 = document.createElement("optgroup");
+        og2.label = "Sites";
+        for (const s of uniqSites) {
+          const opt = document.createElement("option");
+          opt.value = s;      // MA1, MA2, ...
+          opt.textContent = s;
+          og2.appendChild(opt);
+        }
+        sel.appendChild(og2);
+      }
+
+      // restore selection if possible
+      if (keepSelection) {
+        const allValues = new Set(["ALL", ...uniqGroups, ...uniqSites]);
+        sel.value = allValues.has(prev) ? prev : "ALL";
+      } else {
+        sel.value = "ALL";
+      }
     };
 
-    // Isi awal pakai config (MA/BA/TO/BU), lalu akan disinkronkan dari data setelah load.
-    if (typeof STATION_CODES !== "undefined") fillStationOptions(STATION_CODES, false);
-    else fillStationOptions([], false);
+    // Initial: show groups from config, sites will be added after data load
+    const initialGroups = (typeof STATION_CODES !== "undefined") ? STATION_CODES : [];
+    buildStationSelect({ groups: initialGroups, sites: [], keepSelection: false });
 
-    // expose helper for main.js (dipanggil setelah GeoJSON diload)
+    // Called after GeoJSON loaded
     APP.refreshStationOptions = function () {
       const features = APP.data.features || [];
-      const set = new Set(typeof STATION_CODES !== "undefined" ? STATION_CODES : []);
-      for (const f of features) {
-        const site = String(f?.properties?.site || "").toUpperCase();
-        const code = site.slice(0, 2);
-        if (code) set.add(code);
-      }
-      fillStationOptions(Array.from(set), true);
+      const sites = features
+        .map(f => String(f?.properties?.site || "").toUpperCase())
+        .filter(Boolean);
+
+      // groups from config, plus anything found in data (prefix 2 chars)
+      const groupSet = new Set((typeof STATION_CODES !== "undefined") ? STATION_CODES : []);
+      for (const s of sites) groupSet.add(s.slice(0, 2));
+
+      buildStationSelect({
+        groups: Array.from(groupSet),
+        sites,
+        keepSelection: true
+      });
     };
 
     // Radius default
@@ -101,7 +134,7 @@
       else APP.map.removeLayer(APP.layers.heat);
     });
 
-    // Panel open/close button (biar tidak ketutup map di layar kecil)
+    // Panel open/close button
     const setPanelExpanded = (expanded) => {
       if (!APP.ui.panel || !APP.ui.panelToggle) return;
       APP.ui.panel.classList.toggle("closed", !expanded);
@@ -109,13 +142,12 @@
       APP.ui.panelToggle.textContent = expanded ? "✕" : "☰";
     };
 
-    // Default: close on small screens
     if (window.innerWidth <= 520) setPanelExpanded(false);
     else setPanelExpanded(true);
 
     APP.ui.panelToggle?.addEventListener("click", () => {
       const isClosed = APP.ui.panel?.classList.contains("closed");
-      setPanelExpanded(isClosed); // if closed -> open, else close
+      setPanelExpanded(isClosed);
     });
   };
 })();

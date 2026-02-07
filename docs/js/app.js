@@ -105,17 +105,21 @@
   };
 
   // ---------- Station filter helpers ----------
+  // value can be: "ALL", group code ("MA"), or site ("MA1")
   APP.getSelectedStation = function () {
-    return (APP.ui.stationSelect?.value || "ALL").toUpperCase();
+    return String(APP.ui.stationSelect?.value || "ALL").toUpperCase();
   };
 
   APP.filterByStation = function (features) {
-    const code = APP.getSelectedStation();
-    if (!code || code === "ALL") return features;
+    const sel = APP.getSelectedStation();
+    if (!sel || sel === "ALL") return features;
 
     return (features || []).filter((f) => {
       const site = String(f?.properties?.site || "").toUpperCase();
-      return site.startsWith(code);
+      // If the selection is a 2-letter code, treat it as a group (prefix)
+      if (sel.length === 2) return site.startsWith(sel);
+      // Otherwise, treat it as an exact site (MA1, TO2, etc.)
+      return site === sel;
     });
   };
 })();
